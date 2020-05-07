@@ -184,7 +184,7 @@ class skyrocket_adafruit_io_connector_for_woocommerce_plugin {
 						'X-AIO-Key' => $aio_key,
 					),
 					'body' => array(
-						'value' => $feedprefix . '/n' . $value,
+						'value' => $feedprefix . '|' . $value,
 					),
 				)
 			);
