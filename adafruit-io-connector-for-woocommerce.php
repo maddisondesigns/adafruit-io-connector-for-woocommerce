@@ -3,29 +3,34 @@
 Plugin Name: Adafruit IO Connector for WooCommerce
 Plugin URI: http://maddisondesigns.com/adafruit-io-for-woocommerce
 Description: Sends product sale information from your WooCommerce site, to an Adafruit IO feed.
-Version: 1.0.0
+Version: 1.1.0
 WC requires at least: 4.0
-WC tested up to: 4.0
+WC tested up to: 8.0
 Author: Anthony Hortin
 Author URI: http://maddisondesigns.com
 Text Domain: adafruit-io-for-woocommerce
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-This program is free software; you can redistribute it and/or
-modify it under the terms of the GNU General Public License
-as published by the Free Software Foundation; either version 2
-of the License, or (at your option) any later version.
+This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program; if not, see http://www.gnu.org/licenses/gpl-2.0.html.
 */
 
+/**
+  * Declare WooCommerce HPOS compatibility
+  */
+function aiocw_declare_hpos_compat() {
+	if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
+		\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
+	}
+}
+add_action( 'before_woocommerce_init', 'aiocw_declare_hpos_compat' );
 
 class skyrocket_adafruit_io_connector_for_woocommerce_plugin {
 
